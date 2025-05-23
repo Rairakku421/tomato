@@ -1,0 +1,61 @@
+.popup {
+  position: absolute;
+  background-color: $button-second;
+  display: none;
+  flex-direction: column;
+  padding: 5px;
+  right: 0;
+  top: 45px;
+  z-index: 1;
+  border: 1px solid $popup-border;
+  border-radius: 16px;
+
+  &_active {
+    display: flex;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 22px;
+    height: 8px;
+    width: 8px;
+    border: 1px solid $popup-border;
+    border-right: transparent;
+    border-bottom: transparent;
+    transform: rotate(45deg);
+    background-color: $button-second;
+    z-index: 2;
+  }
+
+  &__button {
+    height: 36px;
+    width: 163px;
+    padding: 9px 15px 9px 40px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+    border: 0;
+    background-color: transparent;
+    text-align: left;
+    z-index: 2;
+  }
+
+  .popup-button:hover {
+    background-color: $window-back-ground;
+  }
+
+  &__edit-button {
+    background-image: url(../img/svg/pen.svg);
+    background-repeat: no-repeat;
+    background-position: 13px 10px;
+  }
+
+  &__delete-button {
+    background-image: url(../img/svg/bin.svg);
+    background-repeat: no-repeat;
+    background-position: 13px 10px;
+  }
+}

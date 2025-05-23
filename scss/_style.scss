@@ -1,0 +1,87 @@
+.header {
+  background-color: $light-font;
+  color: $window-panel;
+  box-shadow: 0px 10px 63px rgba(0, 0, 0, 0.07);
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-right: 50px;
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+  }
+}
+
+.main {
+  padding: 94px 0 144px 0;
+}
+
+.main__container {
+  display: flex;
+  gap: 50px;
+  padding: 0 75px;
+  flex-wrap: wrap;
+  background: $button-second;
+}
+
+.pomodoro-form {
+  width: 733px;
+  margin: 0 auto;
+}
+
+.window__panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 19px 30px 19px 30px;
+  background-color: $window-panel;
+  border-radius: 30px 30px 0 0;
+}
+
+.window__body {
+  background-color: $window-back-ground;
+  margin-bottom: 50px;
+  padding: 70px 166px 108px;
+  border-radius: 0 0 30px 30px;
+}
+
+.window__timer-text {
+  color: $dark-font;
+  font-size: 150px;
+  line-height: 183px;
+  margin-bottom: 36px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.window__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 23px;
+}
+
+.task-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-form__add-button {
+  width: 230px;
+}
+
+.pomodoro-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 507px;
+  margin: 0 auto;
+}

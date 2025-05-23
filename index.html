@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+    rel="stylesheet">
+  <link rel="preload" href="fonts/Montserrat-Regular.ttf" as="font"
+    type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="scss/index.css">
+  <script defer src="js/main.js"></script>
+  <title>Tomato timer</title>
+</head>
+
+<body>
+  <header>
+    <section class="header">
+      <div class="container header__container">
+        <img src="img/svg/noto_tomato.svg" class="header__logo"
+          alt="Tomato image">
+        <h1 class="header__title">Tomato timer</h1>
+      </div>
+    </section>
+  </header>
+  <main>
+    <section class="main">
+      <div class="container main__container">
+        <div class="pomodoro-form window">
+          <div class="window__panel">
+            <p class="window__panel-title">Сверстать сайт</p>
+            <p class="window__panel-task-text">Томат 2</p>
+          </div>
+          <div class="window__body">
+            <p class="window__timer-text">25:00</p>
+            <div class="window__buttons">
+              <button class="button button-primary">Старт</button>
+              <button class="button button-secondary hidden">Стоп</button>
+            </div>
+          </div>
+          <form class="task-form" action="submit">
+            <input type="text" class="task-name input-primary" name="task-name"
+              id="task-name" placeholder="название задачи">
+            <button type="button" class="button button-importance default"
+              aria-label="Указать важность"></button>
+            <button type="submit"
+              class="button button-primary task-form__add-button">Добавить</button>
+          </form>
+        </div>
+        <div class="pomodoro-tasks">
+          <div class="tasks">
+            <p class="tasks__title">
+              Задачи:
+            </p>
+            <ul class="tasks__list">
+              <li class="tasks__item important">
+                <span class="count-number">1</span>
+                <button class="tasks__text tasks__text_active">
+                  Сверстать сайт
+                </button>
+                <button class="tasks__button"></button>
+                <!-- popup menu -->
+                <div class="popup popup_active">
+                  <button
+                    class="popup__button popup__edit-button">Редактировать</button>
+                  <button
+                    class="popup__button popup__delete-button">Удалить</button>
+                </div>
+              </li>
+              <li class="tasks__item so-so">
+                <span class="count-number">1</span>
+                <button class="tasks__text">
+                  Оплатить налоги
+                </button>
+                <button class="tasks__button"></button>
+                <!-- popup menu -->
+
+              </li>
+              <li class="tasks__item default">
+                <span class="count-number">3</span>
+                <button class="tasks__text">
+                  Проверить валидность
+                </button>
+                <button class="tasks__button"></button>
+              </li>
+            </ul>
+            <p class="tasks__deadline">1&nbsp;час 30&nbsp;мин</p>
+          </div>
+          <div class="manual">
+            <details class="manual__details">
+              <summary class="manual__title tasks__header-title">
+                Инструкция
+              </summary>
+              <ol class="manual__list">
+                <li class="manual__item">
+                  Напишите название задачи чтобы её&nbsp;добавить
+                </li>
+                <li class="manual__item">
+                  Для активации задачи, выберите её&nbsp;из&nbsp;списка
+                </li>
+                <li class="manual__item">
+                  Запустите таймер
+                </li>
+                <li class="manual__item">
+                  Работайте пока таймер не&nbsp;прозвонит
+                </li>
+                <li class="manual__item">
+                  Сделайте короткий перерыв (5&nbsp;минут)
+                </li>
+                <li class="manual__item">
+                  Продолжайте работать, пока задача не&nbsp;будет выполнена.
+                </li>
+                <li class="manual__item">
+                  Каждые 4&nbsp;периода таймера делайте длинный перерыв
+                  (15-20&nbsp;минут).
+                </li>
+              </ol>
+            </details>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- modal with overlay -->
+  <div class="modal-overlay">
+    <div class="modal-delete">
+      <p class="modal-delete__title">Удалить задачу?</p>
+      <button class="modal-delete__close-button"></button>
+      <button
+        class="modal-delete__delete-button button-primary">Удалить</button>
+      <button class="modal-delete__cancel-button">Отмена</button>
+    </div>
+  </div>
+</body>
+
+</html>

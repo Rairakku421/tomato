@@ -1,0 +1,25 @@
+.manual {
+  &__title {
+    color: #333333;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 33px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #333333;
+    font-size: 16px;
+  }
+
+  .manual__details:not([open]) .manual__list {
+    display: none;
+  }
+}

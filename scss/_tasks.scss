@@ -1,0 +1,91 @@
+.tasks {
+  &__title {
+    color: $dark-font;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 33px;
+    margin-bottom: 3px;
+  }
+
+  &__list {
+    margin-bottom: 30px;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 17px;
+    color: $dark-font;
+    border-bottom: 1px solid $window-back-ground;
+    padding: 0 15px 0 35px;
+  }
+
+  &__item::after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    left: 0;
+    position: absolute;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  &__item.default::after {
+    background-color: #a9bb30;
+  }
+
+  &__item.so-so::after {
+    background-color: #f3ec34;
+  }
+
+  &__item.important::after {
+    background-color: #dc0d27;
+  }
+
+  &__item:first-child {
+    border-top: 1px solid $window-back-ground;
+  }
+
+  &__text {
+    border: none;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 4px 5px;
+    &:hover {
+      background-color: rgba(68, 220, 13, 0.15);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &__text_active {
+    background-color: rgba(220, 13, 39, 0.15);
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    &:hover {
+      background-color: darker(rgba(220, 13, 39, 0.3), 1);
+    }
+  }
+
+  &__button {
+    height: 6px;
+    width: 26px;
+    border: 0;
+    background: url("../img/svg/burger-button.svg") no-repeat;
+  }
+
+  &__deadline {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 17px;
+    color: $deadline-timer;
+  }
+}

@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Nunito, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 17px;
+  background: $button-second;
+  color: $light-font;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+fieldset {
+  margin: 0;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.button {
+  width: 147px;
+  height: 55px;
+  border: 0;
+  border-radius: 16px;
+}
+
+.button-primary {
+  background-color: $button-main;
+  color: $light-font;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: darker($button-main, 1);
+  }
+}
+
+.button-secondary {
+  background-color: $button-second;
+  color: $window-panel;
+  width: 140px;
+  border: 2px solid #000000;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: darker($button-second, 1);
+  }
+}
+
+.input-primary {
+  width: 420px;
+  height: 55px;
+  background-color: $window-back-ground;
+  padding-left: 15px;
+  border: 0;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 16px;
+
+  &:hover {
+    background-color: darker($window-back-ground, 1);
+  }
+}
+
+.button-importance {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button-importance.default {
+  background-color: #a9bb30;
+  &:hover {
+    background-color: darker(#a9bb30, 1);
+  }
+}
+
+.button-importance.so-so {
+  background-color: #f3ec34;
+  &:hover {
+    background-color: darker(#f3ec34, 1);
+  }
+}
+
+.button-importance.important {
+  background-color: #dc0d27;
+  &:hover {
+    background-color: darker(#dc0d27, 1);
+  }
+}
+
+.count-number {
+  position: absolute;
+  content: "";
+  left: 10px;
+  top: 20px;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
