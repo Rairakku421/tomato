@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $window-panel: #000000;
 $light-font: #ffffff;
 $button-second: #f4f4f4;
@@ -10,10 +12,10 @@ $button-main: #ff2a23;
 
 @function lighter($color, $tone) {
   $adjust: 16 * $tone;
-  @return adjust-color($color, $red: $adjust, $green: $adjust, $blue: $adjust);
+  @return color.adjust($color, $red: $adjust, $green: $adjust, $blue: $adjust);
 }
 
 @function darker($color, $tone) {
   $adjust: -16 * $tone;
-  @return adjust-color($color, $red: $adjust, $green: $adjust, $blue: $adjust);
+  @return color.adjust($color, $red: $adjust, $green: $adjust, $blue: $adjust);
 }

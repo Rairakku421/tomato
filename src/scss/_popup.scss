@@ -1,3 +1,5 @@
+@use 'var' as *;
+
 .popup {
   position: absolute;
   background-color: $button-second;
