@@ -10,7 +10,7 @@
   <link rel="preload" href="src/fonts/Montserrat-Regular.ttf" as="font"
         type="font/ttf" crossorigin>
   <link rel="stylesheet" href="src/scss/index.css">
-  <script defer src="js/main.js"></script>
+  <script defer type="module" src="index.js"></script>
   <title>Tomato timer</title>
 </head>
 
@@ -36,6 +36,8 @@
             <div class="window__buttons">
               <button class="button button-primary">Старт</button>
               <button class="button button-secondary hidden">Стоп</button>
+              <button class="button button-restart hidden">Рестарт</button>
+              <div class="break-time hidden">Перерыв</div>
             </div>
           </div>
           <form class="task-form" action="submit">
