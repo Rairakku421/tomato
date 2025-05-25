@@ -5,4 +5,5 @@ const headerLogo = document.querySelector('.header__logo');
 headerLogo.src = logo;
 
 import './js/timer.js'
+import './js/renderTask.js'
 
