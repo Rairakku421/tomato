@@ -72,7 +72,7 @@ const breakTime = (iter) => {
     restartBtn.classList.add('hidden');
     breakTimeText.classList.remove('hidden');
 
-    const breakDuration = iter <= 4 ? 5 * 60000 : 20 * 60000;
+    const breakDuration = (iter % 5 !== 0) ? 5 * 60000 : 20 * 60000;
     let endBreakTime = new Date().getTime() + breakDuration;
 
     timerInterval = setInterval(() => {
@@ -85,7 +85,8 @@ const breakTime = (iter) => {
             startBtn.classList.remove('hidden');
             stopBtn.classList.add('hidden');
             breakTimeText.classList.add('hidden');
-            iteration++;
+
+            iteration = (iteration % 5) + 1;
             return;
         }
 
