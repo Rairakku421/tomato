@@ -1,15 +1,32 @@
-import { editTask, deleteTask } from './processingTask.js';
+import { editTask, deleteTask, selectedTask } from './processingTask.js';
 
-const renderTasks = () => {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+export let savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    const sortedTasks = savedTasks.sort((a, b) => {
+document.addEventListener('DOMContentLoaded', () => {
+    renderTasks();
+    const selectedTaskId = savedTasks.find(task => task.selected)?.id;
+    if (selectedTaskId) {
+        const sortedTasks = [...savedTasks].sort((a, b) => {
+            const taskValue = { 'important': 1, 'so-so': 2, 'default': 3 };
+            return taskValue[a.importance] - taskValue[b.importance];
+        });
+        const sortedIndex = sortedTasks.findIndex(task => task.id === selectedTaskId);
+        if (sortedIndex !== -1) {
+            selectedTask(selectedTaskId, sortedIndex + 1);
+        }
+    }
+});
+
+export const renderTasks = () => {
+    const sortedTasks = [...savedTasks].sort((a, b) => {
         const taskValue = { 'important': 1, 'so-so': 2, 'default': 3 };
         return taskValue[a.importance] - taskValue[b.importance];
     });
 
-    const taskList = document.createElement('ul');
-    taskList.classList.add('tasks__list');
+    const container = document.querySelector('.tasks__list');
+    if (container) {
+        container.innerHTML = '';
+    }
 
     sortedTasks.forEach((task, index) => {
         const taskItem = document.createElement('li');
@@ -22,10 +39,25 @@ const renderTasks = () => {
 
         const taskText = document.createElement('button');
         taskText.classList.add('tasks__text');
-        if (task.importance === 'important') {
+        if (task.selected) {
             taskText.classList.add('tasks__text_active');
         }
         taskText.textContent = task.text;
+
+        taskText.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (task.selected) {
+                const updatedTasks = savedTasks.map(t => ({
+                    ...t,
+                    selected: false
+                }));
+                localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+                savedTasks.splice(0, savedTasks.length, ...updatedTasks);
+                selectedTask(null, null);
+            } else {
+                selectedTask(task.id, index + 1);
+            }
+        });
 
         const menuButton = document.createElement('button');
         menuButton.classList.add('tasks__button');
@@ -36,11 +68,11 @@ const renderTasks = () => {
 
         const editButton = document.createElement('button');
         editButton.classList.add('popup__button', 'popup__edit-button');
-        editButton.textContent = 'Редактировать';
+        editButton.textContent = 'Edite';
 
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('popup__button', 'popup__delete-button');
-        deleteButton.textContent = 'Удалить';
+        deleteButton.textContent = 'Delete';
 
         menuButton.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -55,18 +87,11 @@ const renderTasks = () => {
         deleteButton.addEventListener('click', (e) => {
             e.stopPropagation();
             deleteTask(task.id);
-            renderTasks();
         });
 
         popup.append(editButton, deleteButton);
-        taskItem.append(
-            countNumber,
-            taskText,
-            menuButton,
-            popup
-        );
-
-        taskList.appendChild(taskItem);
+        taskItem.append(countNumber, taskText, menuButton, popup);
+        container.appendChild(taskItem);
     });
 
     document.addEventListener('click', () => {
@@ -81,13 +106,4 @@ const renderTasks = () => {
         });
     });
 
-    const container = document.querySelector('.tasks');
-    if (container) {
-        container.innerHTML = '';
-        container.appendChild(taskList);
-    }
 };
-
-renderTasks();
-
-export { renderTasks }

@@ -48,7 +48,7 @@ stopBtn.addEventListener('click', () => {
     remainingTime = endTime - now;
     clearInterval(timerInterval);
 
-    startBtn.textContent = 'Продолжить';
+    startBtn.textContent = 'Continue';
     startBtn.classList.remove('hidden');
     stopBtn.classList.add('hidden');
     restartBtn.classList.remove('hidden');
@@ -59,7 +59,7 @@ restartBtn.addEventListener('click', () => {
     remainingTime = 0;
     iteration = 0;
     timeText.textContent = '25:00';
-    startBtn.textContent = 'Старт';
+    startBtn.textContent = 'Start';
     startBtn.classList.remove('hidden');
     stopBtn.classList.add('hidden');
     restartBtn.classList.add('hidden');

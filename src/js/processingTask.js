@@ -1,4 +1,4 @@
-import {renderTasks} from './renderTask.js'
+import { renderTasks, savedTasks } from './renderTask.js';
 
 const inputTask = document.querySelector('.task-name');
 const inputTaskImportance = document.querySelector('.button-importance');
@@ -11,11 +11,9 @@ inputTaskImportance.addEventListener('click', () => {
 
     if (taskImportance === 'default') {
         taskImportance = 'so-so';
-    }
-    else if (taskImportance === 'so-so') {
+    } else if (taskImportance === 'so-so') {
         taskImportance = 'important';
-    }
-    else {
+    } else {
         taskImportance = 'default';
     }
 
@@ -28,24 +26,23 @@ addTaskBtn.addEventListener('click', (e) => {
         createTask(taskImportance);
         inputTask.value = '';
     }
-})
+});
 
 const createTask = (taskImportance) => {
     const taskName = inputTask.value;
     const task = {
         text: taskName,
         importance: taskImportance,
-        id: Date.now()
+        id: Date.now(),
+        selected: false
     };
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    savedTasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(savedTasks));
     renderTasks();
 };
 
 const editTask = (id) => {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const task = tasks.find(t => t.id === id);
+    const task = savedTasks.find(t => t.id === id);
     if (!task) return;
 
     const taskItem = document.querySelector(`[data-id="${id}"]`);
@@ -73,7 +70,7 @@ const editTask = (id) => {
 
         const newBtn = document.createElement('button');
         newBtn.className = 'tasks__text';
-        if (task.importance === 'important') {
+        if (task.selected) {
             newBtn.classList.add('tasks__text_active');
         }
         newBtn.textContent = newText || originalText;
@@ -82,7 +79,8 @@ const editTask = (id) => {
 
         if (newText && newText !== originalText) {
             task.text = newText;
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.setItem('tasks', JSON.stringify(savedTasks));
+            renderTasks();
         }
     };
 
@@ -93,9 +91,32 @@ const editTask = (id) => {
 };
 
 const deleteTask = (id) => {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const tasksUpdate = tasks.filter(tasks => tasks.id !== id)
-    localStorage.setItem('tasks', JSON.stringify(tasksUpdate))
-}
+    savedTasks.splice(0, savedTasks.length, ...savedTasks.filter(task => task.id !== id));
+    localStorage.setItem('tasks', JSON.stringify(savedTasks));
+    renderTasks();
+};
 
-export { editTask, deleteTask}
+const selectedTask = (id, index) => {
+    const windowPanelTitle = document.querySelector('.window__panel-title');
+    const windowPanelTaskText = document.querySelector('.window__panel-task-text');
+
+    if (id === null && index === null) {
+        windowPanelTitle.textContent = '⁣';
+        windowPanelTaskText.textContent = '⁣';
+    }
+
+    savedTasks.forEach(task => {
+        task.selected = task.id === id;
+    });
+
+    const taskToSelect = savedTasks.find(task => task.id === id);
+    if (taskToSelect) {
+        windowPanelTitle.textContent = taskToSelect.text;
+        windowPanelTaskText.textContent = 'Tomato ' + index;
+    }
+
+    localStorage.setItem('tasks', JSON.stringify(savedTasks));
+    renderTasks();
+};
+
+export { editTask, deleteTask, selectedTask };
