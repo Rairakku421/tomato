@@ -33,13 +33,20 @@ module.exports = {
                     filename: 'img/[name][ext]',
                 },
             },
+            {
+                test: /\.(mp3|wav|ogg)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'sounds/[name][ext]',
+                },
+            },
         ],
     },
     devServer: {
         static: {
             directory: path.resolve(__dirname, 'dist'),
         },
-        port: 8080,
+        port: 3000,
         open: true,
         hot: true,
     },

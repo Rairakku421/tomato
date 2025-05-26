@@ -84,6 +84,31 @@ fieldset {
   }
 }
 
+.button-restart {
+  background-color: $button-second;
+  color: $window-panel;
+  width: 140px;
+  border: 2px solid #000000;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: darker($button-second, 1);
+  }
+}
+
+.break-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 147px;
+  height: 55px;
+  border: 0;
+  border-radius: 16px;
+  background-color: $button-main;
+  color: $light-font;
+  transition: background-color 0.3s ease-in-out;
+}
+
 .input-primary {
   width: 420px;
   height: 55px;
