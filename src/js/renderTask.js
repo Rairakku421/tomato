@@ -68,7 +68,7 @@ export const renderTasks = () => {
 
         const editButton = document.createElement('button');
         editButton.classList.add('popup__button', 'popup__edit-button');
-        editButton.textContent = 'Edite';
+        editButton.textContent = 'Edit';
 
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('popup__button', 'popup__delete-button');
