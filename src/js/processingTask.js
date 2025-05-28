@@ -44,44 +44,72 @@ const createTask = (taskImportance) => {
 const editTask = (id) => {
     const task = savedTasks.find(t => t.id === id);
     if (!task) return;
-
     const taskItem = document.querySelector(`[data-id="${id}"]`);
     const taskTextBtn = taskItem.querySelector('.tasks__text');
     const originalText = taskTextBtn.textContent;
+    let currentImportance = task.importance;
 
     const editContainer = document.createElement('div');
     editContainer.classList.add('edit__container');
-
     const input = document.createElement('input');
     input.type = 'text';
     input.value = originalText;
-
     const saveBtn = document.createElement('button');
     saveBtn.textContent = 'ок';
 
     editContainer.appendChild(input);
     editContainer.appendChild(saveBtn);
-
     taskTextBtn.replaceWith(editContainer);
     input.focus();
 
+    const changeImportance = () => {
+        if (currentImportance === 'default') {
+            currentImportance = 'so-so';
+        } else if (currentImportance === 'so-so') {
+            currentImportance = 'important';
+        } else {
+            currentImportance = 'default';
+        }
+        taskItem.classList.remove('default', 'so-so', 'important');
+        taskItem.classList.add(currentImportance);
+    };
+
+    const importanceClickHandler = (e) => {
+        if (!e.target.closest('.edit__container')) {
+            changeImportance();
+        }
+    };
+
+    taskItem.addEventListener('click', importanceClickHandler);
+
     const saveHandler = () => {
         const newText = input.value.trim();
-
         const newBtn = document.createElement('button');
         newBtn.className = 'tasks__text';
         if (task.selected) {
             newBtn.classList.add('tasks__text_active');
         }
         newBtn.textContent = newText || originalText;
-
         editContainer.replaceWith(newBtn);
+
+        let hasChanges = false;
 
         if (newText && newText !== originalText) {
             task.text = newText;
+            hasChanges = true;
+        }
+
+        if (currentImportance !== task.importance) {
+            task.importance = currentImportance;
+            hasChanges = true;
+        }
+
+        if (hasChanges) {
             localStorage.setItem('tasks', JSON.stringify(savedTasks));
             renderTasks();
         }
+
+        taskItem.removeEventListener('click', importanceClickHandler);
     };
 
     saveBtn.addEventListener('click', saveHandler);
